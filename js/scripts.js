@@ -6,15 +6,22 @@ let pokemonList = [
     { name: 'Squirtle', height: 0.5, types: ['water']},
 ];
 
-//For loop that iterates pokemon names and adds sauce if height exceeds or is lower than .6
+//For loop that iterates pokemon names and adds sauce if height exceeds or is lower than .6 (commented out to add in foreach loop)
 
 
-for (let i = 0; i < pokemonList.length; i++){
-    if (pokemonList[i].height > .6 ){
-        document.write(pokemonList[i].name + ' (height:' +pokemonList[i].height + ')' + ' - Wow, that\'s big!'+"<br>");
-    }else if (pokemonList[i].height <.6 ){
-        document.write(pokemonList[i].name + ' (height:' +pokemonList[i].height + ')' + ' - Wow that\'s tiny!'+"<br>");
-    }else {
-        document.write(pokemonList[i].name + ' (height:' +pokemonList[i].height + ')'+"<br>");
-    }
-}
+//for (let i = 0; i < pokemonList.length; i++){
+//    if (pokemonList[i].height > .6 ){
+//        document.write(pokemonList[i].name + ' (height:' +pokemonList[i].height + ')' + ' - Wow, that\'s big!'+"<br>");
+//    }else if (pokemonList[i].height <.6 ){
+//        document.write(pokemonList[i].name + ' (height:' +pokemonList[i].height + ')' + ' - Wow that\'s tiny!'+"<br>");
+//    }else {
+//        document.write(pokemonList[i].name + ' (height:' +pokemonList[i].height + ')'+"<br>");
+//    }
+//}
+
+//forEach loop (replacing for loop) that iterates pokemon names and adds sauce if height exceeds or is lower than .6
+
+
+pokemonList.forEach(function(pokemon) {
+    document.write(pokemon.name + ' is a ' + pokemon.types + 'and is ' + pokemon.height + 'tall' + '<br>');
+  });
