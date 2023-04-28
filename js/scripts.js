@@ -15,9 +15,30 @@ let pokemonRepository = (function() {
         return pokemonList;
     }
 
+    // console logging pokemon data
+
+    function showDetails(pokemon){
+        console.log(pokemon.name)
+    }
+
+    function addListItem(pokemon){
+        let pokemonList = document.querySelector(".pokemon-list");
+        let listpokemon = document.createElement("li");
+        let button = document.createElement("button");
+        button.innerText = pokemon.name;
+        button.classList.add("button-class");
+        listpokemon.appendChild(button);
+        pokemonList.appendChild(listpokemon);
+        
+        button.addEventListener('click', function(event){
+            showDetails(pokemon)
+        });
+    }
+
     return {
         add: add,
-        getAll: getAll
+        getAll: getAll,
+        addListItem: addListItem
     };
 })();
 
@@ -35,16 +56,22 @@ let pokemonRepository = (function() {
 //    }
 // }
 
-//forEach loop (replacing for loop) that iterates pokemon names and adds sauce if height exceeds or is lower than .6
+//forEach loop (replacing for loop) that iterates pokemon names and adds sauce if height exceeds or is lower than .6 (before DOM)
+
+// pokemonRepository.getAll().forEach(function(pokemon) {
+//     document.write('<p>' + pokemon.name + '<br>' + 'Type(s): ' + pokemon.types + '<br>');
+//     if (pokemon.height > .6 ){
+//         document.write(' Height:' +pokemon.height + ' - Wow, that\'s big!'+'<br>');
+//     }else if (pokemon.height <.6 ){
+//         document.write(' Height:' +pokemon.height + ' - Wow that\'s tiny!'+'<br>');
+//     }else {
+//         document.write(' Height:' +pokemon.height +'<br>');
+//     }
+// });
 
 
 pokemonRepository.getAll().forEach(function(pokemon) {
-    document.write('<p>' + pokemon.name + '<br>' + 'Type(s): ' + pokemon.types + '<br>');
-    if (pokemon.height > .6 ){
-        document.write(' Height:' +pokemon.height + ' - Wow, that\'s big!'+'<br>');
-    }else if (pokemon.height <.6 ){
-        document.write(' Height:' +pokemon.height + ' - Wow that\'s tiny!'+'<br>');
-    }else {
-        document.write(' Height:' +pokemon.height +'<br>');
-    }
+    pokemonRepository.addListItem(pokemon);
+   
 });
+
