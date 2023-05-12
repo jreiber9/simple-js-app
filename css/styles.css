@@ -1,5 +1,6 @@
 body {
-    text-align: left;
+  display:grid;
+  text-align: center;
   }
 
 .button-class {
@@ -17,5 +18,40 @@ body {
     cursor: pointer;
     background-color: white;
     color: black;
-    border: 2px solid #4caf50;
+    border: 2px solid #145716;
+    width: 25%;
+}
+
+ul {
+  list-style-type: none;
+}
+
+/* added code below for exercise 1.8 */
+
+.modal-container {
+  display: none;
+}
+
+.modal-is-visible {
+  position: fixed;
+  padding: 20px;
+  box-sizing: border-box;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 30%;
+  height: auto;
+  background: white;
+  border: #145716 6px solid;
+  box-shadow: rgba(0, 0, 0, 0.5);
+
+  /* to show it above other content */
+  z-index: 999; 
+
+  /* to allow scrolling if the screen is not high enough*/
+  overflow: auto; 
+
+  /* this is used to center the modal */
+  display: grid;
+  text-align: center;
 }

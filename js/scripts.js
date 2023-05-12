@@ -62,11 +62,59 @@ let pokemonRepository = (function() {
         });
     }
 
-    function showDetails(item) {
-        pokemonRepository.loadDetails(item).then(function() {
-            console.log(item);
+    //updated from console log to show modal
+    function showDetails(pokemon) {
+        loadDetails(pokemon).then(function() {
+            showModal(pokemon);
         });
     }
+
+    // added code for exercise 1.8
+
+    function showModal(pokemon) {
+      pokemonRepository.loadDetails(pokemon).then(function() {
+
+      let modalTitle = document.querySelector(".modal-title");
+      modalTitle.innerText = pokemon.name;
+    
+      // pokemon height
+      let pokemonHeight = document.querySelector(".height");
+      pokemonHeight.innerText = "Height: " + pokemon.height;      
+
+      //pokemon images
+      let imageContainer = document.querySelector(".image-container");
+      let pokemonImage = document.createElement("img");
+      pokemonImage.src = pokemon.imageUrl;
+      pokemonImage.classList.add("pokemon-image");
+      imageContainer.innerHTML="";
+      imageContainer.append(pokemonImage);
+
+      let modal = document.querySelector(".modal");
+      modal.classList.add("modal-is-visible");
+      modal.classList.remove("modal");
+
+      let buttonContainer = document.querySelector(".button-container");
+      let modalCloseButton = document.createElement("button");
+      closeButton.classList.add("btn");
+      closeButton.classList.add("modal-close");
+      closeButton.innerText = "x";
+      buttonContainer.innerHtml = "";
+      buttonContainer.append(modalCloseButton);
+
+      modalCloseButton.addEventListener("click", function() {
+        closeModal();
+      });
+    });
+
+      function closeModal() {
+        let modalContainer = document.querySelector(".modal-container");
+        modalContainer.classList.remove("modal-is-visible");
+        modalContainer.classList.add("modal");
+        modalCloseButton.innerHTML = "";
+      }
+    }
+
+    // code above for exercise 1.8
     
     return {
         add: add,
@@ -74,7 +122,8 @@ let pokemonRepository = (function() {
         addListItem: addListItem,
         loadList: loadList,
         loadDetails: loadDetails,
-        showDetails: showDetails
+        showDetails: showDetails,
+        showModal: showModal,
       };
     })();
 
