@@ -1,6 +1,6 @@
 let pokemonRepository = (function() {
   let pokemonList = [];
-  let apiUrl = 'https://pokeapi.co/api/v2/pokemon/?limit=150';
+  let apiUrl = 'https://pokeapi.co/api/v2/pokemon/?limit=151';
 
 
   function add(pokemon) {
@@ -24,7 +24,8 @@ let pokemonRepository = (function() {
       listpokemon.classList.add("list-group-item")
       let button = document.createElement("button");
       button.innerText = pokemon.name;
-      button.classList.add("btn");
+      button.classList.add("poke-button");
+      button.classList.add("btn", "btn-info");
       button.setAttribute("data-toggle","modal");
       button.setAttribute("data-target","#exampleModal");
       listpokemon.appendChild(button);
@@ -98,6 +99,36 @@ let pokemonRepository = (function() {
     modalBody.append(weightElement);
     modalBody.append(typesElement);
   }
+
+  
+  function searchPokemon() {
+    let searchInput = document.getElementById("search-input");
+    let searchText = searchInput.value.toLowerCase();
+    let allPokemon = document.querySelectorAll(".list-group-item");
+
+    allPokemon.forEach(function (pokemon) {
+      let pokemonText = pokemon
+        .querySelector(".poke-button")
+        .innerText.toLowerCase();
+      let searchList = document.querySelector(".pokemon-list");
+
+      if (pokemonText.includes(searchText)) {
+        searchList.classList.add("search-list");
+        pokemon.style.display = "inline-block";
+      } else {
+        pokemon.style.display = "none";
+      }
+
+      if (!searchInput.value) {
+        searchList.classList.remove("search-list");
+      }
+    });
+  }
+
+  let searchInput = document.getElementById("search-input");
+  searchInput.addEventListener("input", function () {
+    searchPokemon();
+  });
   
   return {
       add: add,
